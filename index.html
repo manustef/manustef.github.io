@@ -33,6 +33,10 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* Multi-language display toggles */
+    [data-lang="ro"] .lang-en { display: none !important; }
+    [data-lang="en"] .lang-ro { display: none !important; }
+
     /* Ambient glow background */
     .ambient-glow {
       position: fixed;
@@ -81,7 +85,7 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 24px;
     }
     .nav-link {
       color: var(--text-muted);
@@ -91,6 +95,56 @@
       transition: color 0.2s;
     }
     .nav-link:hover { color: var(--text); }
+
+    /* Language Switcher */
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-light);
+      border-radius: 30px;
+      padding: 3px;
+      gap: 2px;
+    }
+    .lang-btn {
+      border: none;
+      background: transparent;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .lang-btn:hover {
+      color: var(--text);
+    }
+    .lang-btn.active {
+      background: var(--text);
+      color: var(--bg);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .lang-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      padding: 1px 5px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .lang-btn.active .lang-badge {
+      background: rgba(0, 0, 0, 0.25);
+      color: var(--bg);
+    }
+
     .nav-cta {
       background: var(--card-bg);
       border: 1px solid var(--border-light);
@@ -112,7 +166,7 @@
     .hero {
       padding: 100px 0 80px;
       text-align: center;
-      max-width: 800px;
+      max-width: 820px;
       margin: 0 auto;
     }
     .hero-badge {
@@ -140,7 +194,7 @@
     .hero p {
       font-size: 19px;
       color: var(--text-muted);
-      max-width: 640px;
+      max-width: 660px;
       margin: 0 auto 36px;
       line-height: 1.6;
     }
@@ -178,7 +232,7 @@
       border-radius: 28px;
       overflow: hidden;
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1.15fr 0.85fr;
       transition: transform 0.3s, border-color 0.3s;
     }
     .game-card-flagship:hover {
@@ -205,7 +259,7 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
     .game-titles h2 {
-      font-size: 30px;
+      font-size: 32px;
       font-weight: 900;
       letter-spacing: -0.02em;
       line-height: 1.1;
@@ -216,6 +270,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      margin-top: 4px;
     }
     .game-desc {
       color: var(--text-muted);
@@ -242,25 +297,25 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
     }
     .badge-status {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       background: rgba(34, 197, 94, 0.12);
       border: 1px solid rgba(34, 197, 94, 0.25);
       color: var(--accent-green);
       font-size: 12px;
       font-weight: 700;
-      padding: 6px 14px;
+      padding: 7px 16px;
       border-radius: 20px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
     .badge-status-dot {
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       background: var(--accent-green);
       border-radius: 50%;
     }
@@ -436,6 +491,7 @@
     .footer-links {
       display: flex;
       gap: 20px;
+      flex-wrap: wrap;
     }
     .footer-link {
       color: var(--text-muted);
@@ -452,9 +508,22 @@
       .pipeline-grid { grid-template-columns: 1fr; }
       .hero h1 { font-size: 40px; }
     }
+    @media (max-width: 768px) {
+      nav {
+        height: auto;
+        padding: 16px 0;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+      }
+    }
   </style>
 </head>
-<body>
+<body data-lang="en">
 
   <div class="ambient-glow"></div>
 
@@ -467,25 +536,58 @@
       </a>
 
       <div class="nav-links">
-        <a href="#games" class="nav-link">Games</a>
-        <a href="#studio" class="nav-link">Studio</a>
-        <a href="privacy.html" class="nav-link">Privacy</a>
+        <a href="#games" class="nav-link">
+          <span class="lang-en">Games</span>
+          <span class="lang-ro">Jocuri</span>
+        </a>
+        <a href="#studio" class="nav-link">
+          <span class="lang-en">Studio</span>
+          <span class="lang-ro">Despre Studio</span>
+        </a>
+        <a href="privacy.html" class="nav-link">
+          <span class="lang-en">Privacy</span>
+          <span class="lang-ro">Confidențialitate</span>
+        </a>
+
+        <!-- Language Switcher in Nav -->
+        <div class="lang-switcher">
+          <button id="btn-ro" class="lang-btn" onclick="switchLanguage('ro')">
+            <span class="lang-badge">RO</span>
+            <span>Română</span>
+          </button>
+          <button id="btn-en" class="lang-btn active" onclick="switchLanguage('en')">
+            <span class="lang-badge">EN</span>
+            <span>English</span>
+          </button>
+        </div>
+
         <a href="mailto:zipgameapp@gmail.com" class="nav-cta">Contact</a>
       </div>
     </nav>
 
     <!-- Hero -->
     <section class="hero">
-      <div class="hero-badge">Independent Game Development Studio</div>
-      <h1>Cerebral, tactile & art-forward games.</h1>
-      <p>We build elegant mobile experiences defined by frictionless design, mathematical depth, and respectful player economics.</p>
+      <div class="hero-badge">
+        <span class="lang-en">Independent Game Development Studio</span>
+        <span class="lang-ro">Studio Independent de Dezvoltare Jocuri</span>
+      </div>
+      <h1 class="lang-en">Cerebral, tactile & art-forward games.</h1>
+      <h1 class="lang-ro">Jocuri cerebrale, tactile și axate pe artă.</h1>
+      <p class="lang-en">We build elegant mobile experiences defined by frictionless design, mathematical depth, and respectful player economics.</p>
+      <p class="lang-ro">Construim experiențe mobile elegante, definite prin design fluid, profunzime matematică și respect total pentru atenția jucătorilor.</p>
     </section>
 
     <!-- Games Showcase -->
     <section id="games">
       <div class="section-header">
-        <div class="section-eyebrow">Featured Production</div>
-        <h2 class="section-title">Our Games</h2>
+        <div class="section-eyebrow">
+          <span class="lang-en">Featured Production</span>
+          <span class="lang-ro">Producție Principală</span>
+        </div>
+        <h2 class="section-title">
+          <span class="lang-en">Our Games</span>
+          <span class="lang-ro">Jocurile Noastre</span>
+        </h2>
       </div>
 
       <div class="games-grid">
@@ -497,28 +599,44 @@
                 <img src="icon.png" alt="Zip App Icon" class="app-icon"/>
                 <div class="game-titles">
                   <h2>Zip</h2>
-                  <div class="game-genre">Tactical Logic &bull; Minimalist Strategy</div>
+                  <div class="game-genre">
+                    <span class="lang-en">Tactical Logic &bull; Minimalist Strategy</span>
+                    <span class="lang-ro">Logică Tactilă &bull; Strategie Minimalistă</span>
+                  </div>
                 </div>
               </div>
 
-              <p class="game-desc">
+              <p class="game-desc lang-en">
                 An editorial monograph puzzle game built around tactile sliding friction, toroidal wrapping, and mathematical par scores. Solve handcrafted chapters, navigate the daily archive, and experience pure mental flow.
+              </p>
+              <p class="game-desc lang-ro">
+                Un joc editorial de logică și puzzle construit în jurul fricțiunii tactile de glisare, tranzițiilor toroidale și scorurilor par matematice. Rezolvă capitole realizate manual, explorează arhiva zilnică și experimentează starea pură de concentrare mentală (flow).
               </p>
 
               <div class="game-tags">
                 <span class="tag">iOS &bull; App Store</span>
                 <span class="tag">Android &bull; Google Play</span>
-                <span class="tag">Offline Play</span>
-                <span class="tag">Zero Data Tracking</span>
+                <span class="tag">
+                  <span class="lang-en">Offline Play</span>
+                  <span class="lang-ro">Joc Offline</span>
+                </span>
+                <span class="tag">
+                  <span class="lang-en">Zero Data Tracking</span>
+                  <span class="lang-ro">Zero Urmărire a Datelor</span>
+                </span>
               </div>
             </div>
 
             <div class="game-actions">
               <div class="badge-status">
                 <div class="badge-status-dot"></div>
-                <span>Pre-Launch &bull; In Final Review</span>
+                <span class="lang-en">Pre-Launch &bull; In Final Review</span>
+                <span class="lang-ro">Pre-Lansare &bull; În Revizuire Finală</span>
               </div>
-              <a href="privacy.html" class="btn-link">Privacy Policy &rarr;</a>
+              <a href="privacy.html" class="btn-link">
+                <span class="lang-en">Privacy Policy &rarr;</span>
+                <span class="lang-ro">Politica de Confidențialitate &rarr;</span>
+              </a>
             </div>
           </div>
 
@@ -530,36 +648,52 @@
 
       <!-- Pipeline / Upcoming Hub Titles -->
       <div class="section-header">
-        <div class="section-eyebrow">Studio Pipeline</div>
-        <h2 class="section-title">Upcoming Projects</h2>
+        <div class="section-eyebrow">
+          <span class="lang-en">Studio Pipeline</span>
+          <span class="lang-ro">În Dezvoltare</span>
+        </div>
+        <h2 class="section-title">
+          <span class="lang-en">Upcoming Projects</span>
+          <span class="lang-ro">Proiecte Viitoare</span>
+        </h2>
       </div>
 
       <div class="pipeline-grid">
         <div class="pipeline-card">
           <div>
             <div class="pipeline-meta">
-              <span class="pipeline-phase">Phase II &bull; Prototype</span>
+              <span class="pipeline-phase">
+                <span class="lang-en">Phase II &bull; Prototype</span>
+                <span class="lang-ro">Faza II &bull; Prototip</span>
+              </span>
               <span style="font-size: 20px;">🧩</span>
             </div>
             <h3>Project Chrono</h3>
-            <p>A non-Euclidean temporal sliding mechanic exploring time loops, rewind entropy, and minimal geometry.</p>
+            <p class="lang-en">A non-Euclidean temporal sliding mechanic exploring time loops, rewind entropy, and minimal geometry.</p>
+            <p class="lang-ro">O mecanică non-euclidiană de glisare temporală ce explorează bucle de timp, entropie de derulare și geometrie minimalistă.</p>
           </div>
           <div style="margin-top: 24px; font-size: 12px; color: var(--text-muted); font-weight: 600;">
-            Target Platforms: iOS / Android / iPadOS
+            <span class="lang-en">Target Platforms: iOS / Android / iPadOS</span>
+            <span class="lang-ro">Platforme Țintă: iOS / Android / iPadOS</span>
           </div>
         </div>
 
         <div class="pipeline-card">
           <div>
             <div class="pipeline-meta">
-              <span class="pipeline-phase">Phase I &bull; Concept</span>
+              <span class="pipeline-phase">
+                <span class="lang-en">Phase I &bull; Concept</span>
+                <span class="lang-ro">Faza I &bull; Concept</span>
+              </span>
               <span style="font-size: 20px;">🎵</span>
             </div>
             <h3>Project Harmonia</h3>
-            <p>An acoustic spatial puzzle utilizing dynamic musical intervals and resonant frequencies to align fractured structures.</p>
+            <p class="lang-en">An acoustic spatial puzzle utilizing dynamic musical intervals and resonant frequencies to align fractured structures.</p>
+            <p class="lang-ro">Un puzzle spațial acustic ce utilizează intervale muzicale dinamice și frecvențe de rezonanță pentru a realinia structuri fracturate.</p>
           </div>
           <div style="margin-top: 24px; font-size: 12px; color: var(--text-muted); font-weight: 600;">
-            Target Platforms: Mobile &bull; Spatial Audio Optimized
+            <span class="lang-en">Target Platforms: Mobile &bull; Spatial Audio Optimized</span>
+            <span class="lang-ro">Platforme Țintă: Mobil &bull; Optimizat Audio Spațial</span>
           </div>
         </div>
       </div>
@@ -568,40 +702,69 @@
     <!-- Studio About Section -->
     <section id="studio" class="studio-section">
       <div class="studio-text">
-        <div class="section-eyebrow">About the Entity</div>
+        <div class="section-eyebrow">
+          <span class="lang-en">About the Entity</span>
+          <span class="lang-ro">Despre Companie</span>
+        </div>
         <h2>Novia Prime SRL</h2>
-        <p>
-          Based in Bucharest, Romania, Novia Prime SRL is an independent developer crafting tactile digital objects and logic games. 
-        </p>
-        <p>
-          We operate under a strict philosophy: zero bloatware, zero intrusive telemetry, and complete respect for player attention and privacy.
-        </p>
+        <div class="lang-en">
+          <p>
+            Based in Bucharest, Romania, Novia Prime SRL is an independent developer crafting tactile digital objects and logic games. 
+          </p>
+          <p>
+            We operate under a strict philosophy: zero bloatware, zero intrusive telemetry, and complete respect for player attention and privacy.
+          </p>
+        </div>
+        <div class="lang-ro">
+          <p>
+            Cu sediul în București, România, Novia Prime SRL este un studio independent dedicat creării de experiențe digitale tactile și jocuri de logică premium.
+          </p>
+          <p>
+            Operăm după o filosofie fermă: zero aplicații balast (bloatware), zero telemetrie invazivă și respect total pentru atenția și confidențialitatea utilizatorilor.
+          </p>
+        </div>
       </div>
 
       <div class="studio-stats">
         <div class="stat-box">
           <div class="stat-number">100%</div>
-          <div class="stat-label">Privacy Compliant</div>
+          <div class="stat-label">
+            <span class="lang-en">Privacy Compliant</span>
+            <span class="lang-ro">Confidențialitate Totală</span>
+          </div>
         </div>
         <div class="stat-box">
           <div class="stat-number">120 FPS</div>
-          <div class="stat-label">Impeller Optimized</div>
+          <div class="stat-label">
+            <span class="lang-en">Impeller Optimized</span>
+            <span class="lang-ro">Optimizat cu Impeller</span>
+          </div>
         </div>
         <div class="stat-box">
           <div class="stat-number">GDPR</div>
-          <div class="stat-label">European Entity</div>
+          <div class="stat-label">
+            <span class="lang-en">European Entity</span>
+            <span class="lang-ro">Companie Europeană</span>
+          </div>
         </div>
         <div class="stat-box">
           <div class="stat-number">AdMob</div>
-          <div class="stat-label">app-ads.txt Certified</div>
+          <div class="stat-label">
+            <span class="lang-en">app-ads.txt Certified</span>
+            <span class="lang-ro">Certificat app-ads.txt</span>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Contact & Publisher Inquiries -->
     <section class="contact-bar">
-      <h3>Get In Touch</h3>
-      <p>For press inquiries, publisher relations, or player support:</p>
+      <h3>
+        <span class="lang-en">Get In Touch</span>
+        <span class="lang-ro">Intră în Legătură cu Noi</span>
+      </h3>
+      <p class="lang-en">For press inquiries, publisher relations, or player support:</p>
+      <p class="lang-ro">Pentru întrebări de presă, relații cu publisheri sau asistență pentru utilizatori:</p>
       <a href="mailto:zipgameapp@gmail.com" class="contact-email-btn">
         <span>✉️</span>
         <span>zipgameapp@gmail.com</span>
@@ -611,7 +774,8 @@
     <!-- Footer -->
     <footer>
       <div>
-        &copy; 2026 <strong>Novia Prime SRL</strong>. All rights reserved. &bull; Bucharest, Romania
+        <span class="lang-en">&copy; 2026 <strong>Novia Prime SRL</strong>. All rights reserved. &bull; Bucharest, Romania</span>
+        <span class="lang-ro">&copy; 2026 <strong>Novia Prime SRL</strong>. Toate drepturile rezervate. &bull; București, România</span>
       </div>
 
       <div class="footer-links">
@@ -622,5 +786,74 @@
     </footer>
   </div>
 
+  <script>
+    function setLanguage(lang) {
+      document.body.setAttribute('data-lang', lang);
+      document.documentElement.lang = lang;
+      
+      const btnRo = document.getElementById('btn-ro');
+      const btnEn = document.getElementById('btn-en');
+      if (btnRo && btnEn) {
+        if (lang === 'ro') {
+          btnRo.classList.add('active');
+          btnEn.classList.remove('active');
+        } else {
+          btnEn.classList.add('active');
+          btnRo.classList.remove('active');
+        }
+      }
+      
+      // Update privacy links with lang param
+      document.querySelectorAll('a[href^="privacy.html"]').forEach(a => {
+        const baseHref = a.getAttribute('href').split('?')[0];
+        a.href = `${baseHref}?lang=${lang}`;
+      });
+
+      // Update page title
+      if (lang === 'ro') {
+        document.title = "Novia Prime Games — Studio Oficial & Jocuri";
+      } else {
+        document.title = "Novia Prime Games — Official Studio Hub";
+      }
+
+      try {
+        localStorage.setItem('novia_lang', lang);
+        localStorage.setItem('zip_privacy_lang', lang);
+      } catch (e) {}
+    }
+
+    function switchLanguage(lang) {
+      setLanguage(lang);
+      if (history.replaceState) {
+        const url = new URL(window.location);
+        url.searchParams.set('lang', lang);
+        history.replaceState(null, '', url);
+      }
+    }
+
+    // Auto-detect from URL param, localStorage, or browser language
+    (function initLang() {
+      const params = new URLSearchParams(window.location.search);
+      const urlLang = params.get('lang');
+      if (urlLang === 'ro' || urlLang === 'en') {
+        setLanguage(urlLang);
+        return;
+      }
+      try {
+        const saved = localStorage.getItem('novia_lang') || localStorage.getItem('zip_privacy_lang');
+        if (saved === 'ro' || saved === 'en') {
+          setLanguage(saved);
+          return;
+        }
+      } catch (e) {}
+      
+      const userLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+      if (userLang.startsWith('ro')) {
+        setLanguage('ro');
+      } else {
+        setLanguage('en');
+      }
+    })();
+  </script>
 </body>
 </html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zip — Official Website & Privacy</title>
+  <style>
+    :root {
+      --bg: #F8F5EE;
+      --card-bg: #FFFFFF;
+      --border: #E8E2D6;
+      --primary: #171615;
+      --secondary: #625E56;
+      --accent: #FF5D57;
+      --blue: #3B82F6;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121110;
+        --card-bg: #1C1A18;
+        --border: #383431;
+        --primary: #F7F2EB;
+        --secondary: #A8A199;
+        --accent: #FF6E68;
+        --blue: #60A5FA;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .card {
+      max-width: 600px;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 48px 36px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+    .app-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 26px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      margin-bottom: 24px;
+      border: 1px solid var(--border);
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    p.tagline {
+      font-size: 17px;
+      color: var(--secondary);
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+    .links-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      font-size: 15px;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--bg);
+    }
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      background: rgba(0,0,0,0.03);
+    }
+    footer {
+      font-size: 13px;
+      color: var(--secondary);
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="icon.png" alt="Zip App Icon" class="app-icon"/>
+    <h1>Zip</h1>
+    <p class="tagline">An editorial minimalist block-sliding puzzle game designed with tactical friction, par scores, and daily monographs.</p>
+
+    <div class="links-grid">
+      <a href="privacy.html" class="btn btn-primary">Privacy Policy & Data Rights</a>
+      <a href="mailto:privacy@zipgame.app" class="btn btn-secondary">Contact Support</a>
+    </div>
+
+    <footer>
+      &copy; 2026 Zip Game Studio. All rights reserved.
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+# Google AdMob app-ads.txt for Zip Game
+# Developer Website: https://manustef.github.io
+#
+# When your Google AdMob account is approved, paste your publisher verification line below.
+# Example:
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
